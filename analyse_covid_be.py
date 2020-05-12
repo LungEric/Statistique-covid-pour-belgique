@@ -4,14 +4,17 @@ import matplotlib.pyplot as plt
 # fait dataframe pour la liste entière 
 ted_data = pd.read_csv('covid.csv')
 covid = pd.read_csv('covid.csv')
-pd.set_option('display.max_rows',11)
+pd.set_option('display.max_columns',11)
 
 # fait mon filtre spécifique belgique
+
 fil_pays = (covid['countriesAndTerritories']=='Belgium') 
 liste_deces = covid.loc[fil_pays,['countriesAndTerritories','dateRep','cases','deaths']]
 
+
 # retourne ma liste avec la belgique qui comprend la date les cas et nombre de déces
 # ajouter tous les valeurs dans une liste
+
 deces = liste_deces.to_dict()
 
 def date():
@@ -42,8 +45,14 @@ c_cas = cas()
 c_mort = mort()
 
 plt.title('Covid-19 pour belgique')
-plt.scatter(c_date,c_cas,label='Covid-19')
-plt.scatter(c_date,c_mort,label='Covid-19')
+# Pour voir graphique
+# plt.plot(c_date,c_cas,label='Nombre de cas détecter')
+# plt.plot(c_date,c_mort,label='Nombre de mort')
+
+# Pour voir un scatter graph
+plt.scatter(c_date,c_cas,label='Nombre de cas détecter')
+plt.scatter(c_date,c_mort,label='Nombre de mort')
 plt.xticks(rotation=90)
 plt.tight_layout()
+plt.legend()
 plt.show()
